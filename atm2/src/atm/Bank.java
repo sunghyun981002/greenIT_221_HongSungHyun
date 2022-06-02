@@ -47,7 +47,7 @@ public class Bank {
 		if(sel==1) login();
 		else if(sel==2) joinUser();
 		else if(sel==3) dropoutUser();
-		else if(sel==4) {}
+		else if(sel==4) createAcc();
 		else if(sel==5) {}
 		else if(sel==6) printUser();
 	}
@@ -86,7 +86,13 @@ public class Bank {
 			System.out.println("["+ log+"]님 로그인중" );
 		}
 		else {
-			System.out.println("아직 로그인 전.");
+			System.out.println("아직 로그인 전");
+		}
+	}
+	private void createAcc() {
+		int AccCnt =0;
+		if(log!=null) {
+			
 		}
 	}
 }
