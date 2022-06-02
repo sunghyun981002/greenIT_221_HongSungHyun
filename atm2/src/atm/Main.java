@@ -15,8 +15,12 @@ public class Main {
 		
 		//3.atm운영
 		// ㄴ Bank(run())
+
+		
 		Bank.setName("Green");
-		Bank.run(); 
+		
+
+		Bank.instance.run(); 
 	}
 
 }

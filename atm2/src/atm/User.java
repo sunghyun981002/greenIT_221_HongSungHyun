@@ -9,41 +9,53 @@ public class User {
 	
 	private ArrayList<Account> accs;
 	
-	public User(int cnt, String id2, String pw2, String name2) {
-		this.code = cnt;
-		this.id =id2;
-		this.pw = pw2;
-		this.name=name2;
+	//사용자를 통해 입력받은 데이터 -> 가 객체 생성 용도
+	public User( String id, String pw, String name) {
+		this.id =id;
+		this.pw = pw;
+		this.name=name;
 	}
+	
+	//검증이 완료된 객체에 대하여 -> 실 데이터화하는 용도 
+	public User(int code, String id, String pw, String name) {
+		this.code=code;
+		this.id =id;
+		this.pw = pw;
+		this.name=name;
+		
+		accs = new ArrayList<Account>();	
+	}
+
 	public int getCode() {
-		return this.code;
+		return code;
 	}
+
+
 	public int getAccCnt() {
-		return this.accCnt;
+		return accCnt;
 	}
-	public String getId() {
-		return this.id;
-	}
-	public String getPw() {
-		return this.pw;
-	}
-	public String getName() {
-		return this.name;
-	}
-	public void setCode(int code) {
-		this.code= code;
-	}
+
 	public void setAccCnt(int accCnt) {
-		this.accCnt= accCnt;
+		this.accCnt = accCnt;
 	}
-	public void setId(String id) {
-		this.id= id;
+
+	public String getId() {
+		return id;
 	}
+
+	public String getPw() {
+		return pw;
+	}
+
 	public void setPw(String pw) {
-		this.pw= pw;
+		this.pw = pw;
 	}
-	public void setName(String name) {
-		this.name =name;
+
+	public String getName() {
+		return name;
 	}
+
+
+	
 
 }
