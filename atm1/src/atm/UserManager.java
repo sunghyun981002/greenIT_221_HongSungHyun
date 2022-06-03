@@ -53,6 +53,9 @@ public class UserManager {
 
 		return cnt;
 	}
+	public String getName(int idx) {
+		return users.get(idx).getName();
+	}
 
 	public String toString(int i) {
 		return users.get(i).getId();
@@ -96,8 +99,13 @@ public class UserManager {
 	public void printAllUsersAccList(int idx) {
 		ArrayList<Account> list = getUserAccList(idx);
 		for(int i=0; i<list.size(); i++) {
-			System.out.printf("[%d] accNum: %s\n", (i+1), list.get(i).getAccNum());
+			System.out.printf("[%d] accNum: %s money: %d원\n", (i+1), list.get(i).getAccNum(),list.get(i).getMoney());
 		}
+	}
+	public void setUserMoney(int Useridx, int accNum ,int money) {
+		ArrayList<Account> list = getUserAccList(Useridx);
+
+		list.get(accNum).setMoney(money);
 	}
 
 

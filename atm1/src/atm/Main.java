@@ -17,10 +17,10 @@ public class Main {
 		// ㄴ Bank(run())
 
 		
-		Bank.setName("Green");
+//		Bank.setName("Green");
 		
 
-		Bank.instance.run(); 
+		Bank.instance.menu(); 
 	}
 
 }
