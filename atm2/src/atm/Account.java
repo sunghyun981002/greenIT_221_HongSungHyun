@@ -7,6 +7,14 @@ public class Account {
 	private int money;
 	
 	
+	public Account(int log, int accNum) {
+		this.userCode =log;
+		this.accNum =accNum;
+
+	}
+
+
+
 	public int getUserCode() {
 		return userCode;
 	}

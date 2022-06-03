@@ -46,13 +46,6 @@ public class UserManager {
 
 		}
 	}
-	public void loginUser(String id, String pw) {
-		for (int i = 0; i < this.users.size(); i++) {
-			if(users.get(i).getId().equals(id)&&users.get(i).getPw().equals(pw)) {
-				Bank.instance.log(users.get(i).getName());
-			}
-		}
-	}
 
 	private int createCod() {
 		// 중복되지않는 고유코드 발급
@@ -67,6 +60,33 @@ public class UserManager {
 
 	public int getCnt() {
 		return cnt;
+	}
+	public int checkLog(User user) {
+		for(int i=0; i<users.size(); i++) {
+			User u = users.get(i);
+			if(u.getId().equals(user.getId())&&u.getPw().equals(user.getPw())) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	public int getUserCode(int idx) {
+		return users.get(idx).getCode();
+	}
+	public int getAccCnt(int idx) {
+		User u = users.get(idx);
+		return u.getAccCnt();
+	}
+	public void setAccCnt(int useridx , int accCnt) {
+		
+		this.users.get(useridx).setAccCnt(users.get(useridx).getAccCnt()+1);
+	}
+	public void checkCode(String log) {
+		for(int i=0; i<users.size(); i++) {
+			if(users.get(i).getName().equals(log)) {
+				
+			}
+		}
 	}
 
 }

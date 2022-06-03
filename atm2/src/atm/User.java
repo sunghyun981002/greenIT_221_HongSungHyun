@@ -9,6 +9,12 @@ public class User {
 	
 	private ArrayList<Account> accs;
 	
+	//로그 검증 용도 
+	public User(String id, String pw) {
+		this.id=id;
+		this.pw =pw;
+	}
+	
 	//사용자를 통해 입력받은 데이터 -> 가 객체 생성 용도
 	public User( String id, String pw, String name) {
 		this.id =id;
@@ -26,6 +32,8 @@ public class User {
 		accs = new ArrayList<Account>();	
 	}
 
+	
+	//getter & setter 
 	public int getCode() {
 		return code;
 	}

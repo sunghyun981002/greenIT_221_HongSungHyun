@@ -8,9 +8,9 @@ public class Bank {
 	
 	private Scanner scan =new Scanner(System.in);
 	private static String name;
-	private String log;
-	public void log(String name) {
-		this.log = name;
+	private int log = -1;
+	public void log(int code) {
+		this.log = code;
 	}
 	private Bank() {
 		
@@ -78,11 +78,18 @@ public class Bank {
 		String id =scan.next();
 		System.out.print("[로그인]pw : ");
 		String pw =scan.next();
-		UserManager.instance.loginUser(id,pw);
-		System.out.println(log+"님 반갑습니다.");
+		
+		log = UserManager.instance.checkLog(new User(id,pw));
+		if(log ==-1) {
+			System.out.println("회원정보 확인 바람.");
+		}
+		else{
+			System.out.println("로그인 완료");
+			
+		}
 	}
 	private void printLog() {
-		if(log!=null) {
+		if(log!=-1) {
 			System.out.println("["+ log+"]님 로그인중" );
 		}
 		else {
@@ -90,9 +97,9 @@ public class Bank {
 		}
 	}
 	private void createAcc() {
-		int AccCnt =0;
-		if(log!=null) {
-			
-		}
+		// 로그 지금 이름받아오고있으니까 이름에 맞는 code번호 받아서 해야함		
+		AccountManager.instance.addAcc(log);
+				
+		
 	}
 }
