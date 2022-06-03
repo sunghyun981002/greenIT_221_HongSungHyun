@@ -22,7 +22,7 @@ public class AccountManager {
 			// 사용자의 바로가기 리스트에 추가
 			UserManager.instance.getUserAccList(userIdx).add(newAcc);
 			UserManager.instance.setAccCnt(userIdx, accCnt + 1);
-			UserManager.instance.setUserMoney(userIdx,accCnt,1000);
+			UserManager.instance.setUserMoney(userIdx,accCnt,1000); // 계좌 생성 성공시 1000원 지금 
 			return true;
 		}
 		return false;
