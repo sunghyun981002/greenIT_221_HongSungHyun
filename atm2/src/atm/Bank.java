@@ -39,7 +39,7 @@ public class Bank {
 		}
 	}
 	private void printMenu() {
-		System.out.println("1.로그인 2.회원가입 3.회원탈퇴 4.계좌생성 5.계좌철회 6.유저id확인");
+		System.out.println("1.로그인 2.회원가입 3.회원탈퇴 4.계좌생성 5.계좌철회 6.유저id확인 7.로그아웃");
 	}
 	private void selectMenu() {
 		System.out.println("sel : ");
@@ -47,9 +47,10 @@ public class Bank {
 		if(sel==1) login();
 		else if(sel==2) joinUser();
 		else if(sel==3) dropoutUser();
-		else if(sel==4) createAcc();
-		else if(sel==5) {}
+		else if(sel==4 && log!= -1) createAcc();
+		else if(sel==5&&log!= -1) deleteAcc();
 		else if(sel==6) printUser();
+		else if(sel ==7) log = -1;
 	}
 	private void joinUser() {
 		//아이디 만들기 
@@ -96,10 +97,25 @@ public class Bank {
 			System.out.println("아직 로그인 전");
 		}
 	}
-	private void createAcc() {
-		// 로그 지금 이름받아오고있으니까 이름에 맞는 code번호 받아서 해야함		
-		AccountManager.instance.addAcc(log);
-				
+	private void createAcc() {	
+		boolean success = AccountManager.instance.addAcc(log);
+		if(success) 
+			System.out.println("계좌생성 성공");
+		else
+			System.out.println("계좌생성 실패(이유 3개 이상임)");
+	}
+	private void deleteAcc() {
+		//보유 계좌부터 출력 
+		UserManager.instance.printAllUsersAccList(log);
+		System.out.print("철회 대상 번호 : ");
+		int delIdx = scan.nextInt()-1;
+		
+		boolean result = AccountManager.instance.deleteAcc(log, delIdx);
+		if(result) {
+			System.out.println("계좌철회 완료");
+		}
+		else
+			System.out.println("계좌철회 실패");
 		
 	}
 }

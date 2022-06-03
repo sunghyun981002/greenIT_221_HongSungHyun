@@ -78,8 +78,7 @@ public class UserManager {
 		return u.getAccCnt();
 	}
 	public void setAccCnt(int useridx , int accCnt) {
-		
-		this.users.get(useridx).setAccCnt(users.get(useridx).getAccCnt()+1);
+		this.users.get(useridx).setAccCnt(accCnt);
 	}
 	public void checkCode(String log) {
 		for(int i=0; i<users.size(); i++) {
@@ -88,5 +87,18 @@ public class UserManager {
 			}
 		}
 	}
+	public ArrayList<Account> getUserAccList(int idx){ //이거 쫌 어렵군 
+		return this.users.get(idx).getAccs();
+	}
+	public void setUsersAccList(int index) {
+		
+	}
+	public void printAllUsersAccList(int idx) {
+		ArrayList<Account> list = getUserAccList(idx);
+		for(int i=0; i<list.size(); i++) {
+			System.out.printf("[%d] accNum: %s\n", (i+1), list.get(i).getAccNum());
+		}
+	}
+
 
 }

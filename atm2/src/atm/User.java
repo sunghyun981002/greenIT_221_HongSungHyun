@@ -62,6 +62,9 @@ public class User {
 	public String getName() {
 		return name;
 	}
+	public ArrayList<Account> getAccs(){
+		return this.accs;
+	}
 
 
 	
