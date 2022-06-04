@@ -53,20 +53,20 @@ public class Bank {
 	private void loginMenu() {
 		while(true) {
 			System.out.println("["+UserManager.instance.getName(log)+"님, 로그인 ]");
-			UserManager.instance.printAllUsersAccList(log);
-			System.out.println("1.계좌생성\n2.입금하기\n3.출금하기\n4.이체하기\n5.계좌조회\n6.계좌삭제\n7.회원탈퇴\n0.삭제");
+			
+			System.out.println("1.계좌생성\n2.입금하기\n3.출금하기\n4.이체하기\n5.계좌조회\n6.계좌삭제\n0.로그아웃");
 			System.out.print("메뉴선택 : ");
 			int choice = scan.nextInt();
 			if(choice==1) createAcc();
-			else if(choice ==2) {}
-			else if(choice ==3) {}
-			else if(choice ==4) {}
-			else if(choice ==5) {}
+			else if(choice ==2) insertMoney();
+			else if(choice ==3) withdrowMoney();
+			else if(choice ==4) transferMoney();
+			else if(choice ==5) UserManager.instance.printAllUsersAccList(log);
 			else if(choice ==6) deleteAcc();
-			else if(choice ==7) {}
 			else if(choice ==0) {
 				log = -1;
 				System.out.println("[메세지] 로그아웃 완료");
+				break;
 			}
 		}
 	}
@@ -112,14 +112,14 @@ public class Bank {
 			
 		}
 	}
-	private void printLog() {
-		if(log!=-1) {
-			System.out.println("["+ log+"]님 로그인중" );
-		}
-		else {
-			System.out.println("아직 로그인 전");
-		}
-	}
+//	private void printLog() {
+//		if(log!=-1) {
+//			System.out.println("["+ log+"]님 로그인중" );
+//		}
+//		else {
+//			System.out.println("아직 로그인 전");
+//		}
+//	}
 	private void createAcc() {	
 		boolean success = AccountManager.instance.addAcc(log);
 		if(success) { 
@@ -142,5 +142,39 @@ public class Bank {
 		else
 			System.out.println("계좌철회 실패");
 		
+	}
+	private void insertMoney() {
+		System.out.print("[입금] 입금할 계좌 num : ");
+		int accNum=scan.nextInt()-1;
+		if(accNum<UserManager.instance.getUserAccList(log).size()) {
+			System.out.print("[입금] 입금액 : ");
+			int money = scan.nextInt();
+			
+			
+			UserManager.instance.setUserPlusMoney(log, accNum, money);
+			System.out.println("[입금] 입금성공!");
+		}
+		else {
+			System.out.println("다시 확인해주세요");
+		}
+ 
+		
+	}
+	private void withdrowMoney() {
+		System.out.print("[출금] 출금할 계좌 num : ");
+		int accNum=scan.nextInt()-1;
+		if(accNum<UserManager.instance.getUserAccList(log).size()) {
+			System.out.print("[출금] 출금액 : ");
+			int money = scan.nextInt();
+			
+			
+			UserManager.instance.setUserMinusMoney(log, accNum, money);
+		}
+		else {
+			System.out.println("다시 확인해주세요");
+		}
+	}
+	private void transferMoney() {
+		UserManager.instance.transferMoneyForUser(log);
 	}
 }

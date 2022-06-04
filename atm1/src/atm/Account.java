@@ -30,8 +30,11 @@ public class Account {
 	public int getMoney() {
 		return money;
 	}
-	public void setMoney(int money) {
-		this.money = money;
+	public void setAddMoney(int money) {
+		this.money += money;
+	}
+	public void setMinMoney(int money) {
+		this.money -= money;
 	}
 	
 }

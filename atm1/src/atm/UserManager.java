@@ -7,8 +7,8 @@ import java.util.Scanner;
 public class UserManager {
 	private Scanner scan = new Scanner(System.in);
 	private int cnt = 0;
-	public static UserManager instance = new UserManager(); // 이 부분이 이해가 잘안된다 .
-
+	public static UserManager instance = new UserManager(); 
+	private int checkPay = -1;
 	private UserManager() {
 
 	}
@@ -102,10 +102,81 @@ public class UserManager {
 			System.out.printf("[%d] accNum: %s money: %d원\n", (i+1), list.get(i).getAccNum(),list.get(i).getMoney());
 		}
 	}
-	public void setUserMoney(int Useridx, int accNum ,int money) {
+	public void setUserPlusMoney(int Useridx, int accNum ,int money) {
 		ArrayList<Account> list = getUserAccList(Useridx);
 
-		list.get(accNum).setMoney(money);
+		list.get(accNum).setAddMoney(money);
+	}
+	public void setUserMinusMoney(int Useridx, int accNum ,int money) {
+		checkPay =-1;
+		ArrayList<Account> list = getUserAccList(Useridx);
+		if(list.get(accNum).getMoney() >= money) {
+			list.get(accNum).setMinMoney(money);
+			checkPay =0;
+		}
+		else {
+			System.out.println("금액부족");
+			checkPay =-1;
+		}
+	}
+	public void transferMoneyForUser(int log) {
+		ArrayList<Account> list1 = getUserAccList(log);
+		if(users.size()>=2 &&list1.size()>0) {
+			System.out.println("[User List]");
+			for(int i=0; i<users.size(); i++) {
+				if(i!=users.size()-1) {
+					System.out.print((i+1) +"."+ users.get(i).getName() + "/ ");				
+				}
+				else {
+					System.out.print((i+1) +"."+users.get(i).getName());
+				}
+			}
+			System.out.println();
+			System.out.print("보내실 user의 번호를 입력해주세요.");
+			int sel =scan.nextInt()-1;
+			if(sel != log) {
+				System.out.println("[User "+ users.get(sel).getName()+"님의 Acc List]");
+				printAllUsersAccList(sel);
+				ArrayList<Account> list2 = getUserAccList(sel);
+				if(list2.size()>0) {
+					System.out.print("이체할 계좌 Num : ");
+					int accNum = scan.nextInt()-1;
+					if(accNum<getUserAccList(sel).size()) {
+						
+						System.out.print("이체 금액 : ");
+						int money = scan.nextInt();
+						
+						printAllUsersAccList(log);
+						System.out.print("몇 번째 계좌에서 이체해주시겠습니까? :");
+						int selectNum = scan.nextInt()-1;
+						if(selectNum<getUserAccList(log).size()) {
+							setUserMinusMoney(log,selectNum,money);
+							if(checkPay ==0) {
+								setUserPlusMoney(sel,accNum,money);
+								System.out.println("이체 완료!");
+							}										
+						}
+						else {
+							System.out.println("존재하지않는 accnum입니다.");
+						}
+					}
+					else {
+						System.out.println("존재하지않는 accnum입니다.");
+					}
+				}
+				else {
+					System.out.println("상대방이 계좌가 존재하지않습니다.");
+				}
+			}
+			else {
+				System.out.println("자기 자신에게는 보낼 수 없습니다");
+			}
+		}
+		else {
+			System.out.println("user와 acc부터 생성해주시고 이용해주세요.");
+		}
+		
+		
 	}
 
 
