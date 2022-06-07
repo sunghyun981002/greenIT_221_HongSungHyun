@@ -14,8 +14,8 @@ public class Shop {
 	}
 	public void menu() {
 		while(true) {
-			System.out.println("1.°¡ÀÔ\n2.Å»Åğ\n3.·Î±×ÀÎ\n4.·Î±×¾Æ¿ô\n100.°ü¸®ÀÚ\n0.Á¾·á");
-			System.out.print("¸Ş´º¼±ÅÃ : ");
+			System.out.println("1.ê°€ì…\\n2.íƒˆí‡´\\n3.ë¡œê·¸ì¸\\n4.ë¡œê·¸ì•„ì›ƒ\\n100.ê´€ë¦¬ì\\n0.ì¢…ë£Œ");
+			System.out.print("ï¿½Ş´ï¿½ï¿½ï¿½ï¿½ï¿½ : ");
 			int sel=scan.nextInt();
 			
 			if(sel==1) um.joinUser();
@@ -31,7 +31,7 @@ public class Shop {
 	public void loginMenu() {
 		if(um.loginUser()) {
 			while(true) {
-				System.out.println("1.¼îÇÎÇÏ±â\n2.Àå¹Ù±¸´Ï ¸ñ·Ï\n0.Á¾·áÇÏ±â ");
+				System.out.println("1.ì‡¼í•‘í•˜ê¸°\\n2.ì¥ë°”êµ¬ë‹ˆ ëª©ë¡\\n0.ì¢…ë£Œí•˜ê¸°");
 				int sel =scan.nextInt();
 			}			
 			

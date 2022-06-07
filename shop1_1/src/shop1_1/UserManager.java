@@ -12,7 +12,7 @@ public class UserManager {
 	
 	public void joinUser() {
 		int check = -1;
-		System.out.print("[È¸¿ø°¡ÀÔ] id¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ");
+		System.out.print("[íšŒì›ê°€ì…] idë¥¼ ì…ë ¥í•˜ì„¸ìš” : ");
 		String id = scan.next();
 		for(int i=0; i<userList.size(); i++) {
 			if(userList.get(i).getId().equals(id)) {
@@ -23,29 +23,29 @@ public class UserManager {
 		if(check ==-1) {
 			User us = new User(id,0);
 			userList.add(us);
-			System.out.println("[È¸¿ø°¡ÀÔ] °¡ÀÔ¼º°ø! ");			
+			System.out.println("[íšŒì›ê°€ì…] ê°€ì…ì„±ê³µ! ");			
 		}
 		else {
-			System.out.println("[È¸¿ø°¡ÀÔ] ÀÌ¹Ì Á¸ÀçÇÏ´Â ¾ÆÀÌµğÀÔ´Ï´Ù.");
+			System.out.println("[íšŒì›ê°€ì…] ì´ë¯¸ ì¡´ì¬í•˜ëŠ” ì•„ì´ë””ì…ë‹ˆë‹¤.");
 		}
 		
 	}
 	public void deleteUser() {
 		int delIdx = -1;
-		System.out.print("[Å»Åğ]Å»ÅğÇÒ id : " );
+		System.out.print("[íƒˆí‡´]íƒˆí‡´í•  id : " );
 		String delId = scan.next();
 		for(int i=0; i<userList.size(); i++) {
 			if( userList.get(i).getId().equals(delId)) {
 				delIdx = i;		
 			}
 		}
-		System.out.print("[Å»Åğ]Å»ÅğÇÏ½Ã°Ú½À´Ï±î? y/n : " );
+		System.out.print("[íƒˆí‡´]íƒˆí‡´í•˜ì‹œê² ìŠµë‹ˆê¹Œ? y/n : " );
 		String ans = scan.next();
 
 		if(ans.equals("y")) {
 			userList.remove(delIdx);
 			userLog =-1;
-			System.out.println("[Å»Åğ]Å»ÅğµÇ¾ú½À´Ï´Ù.");
+			System.out.println("[íƒˆí‡´]íƒˆí‡´ë˜ì—ˆìŠµë‹ˆë‹¤.");
 		}
 		
 
@@ -54,7 +54,7 @@ public class UserManager {
 	}
 	public boolean loginUser() {
 		userLog = -1;
-		System.out.print("[·Î±×ÀÎ] id¸¦ ÀÔ·ÂÇÏ¼¼¿ä :");
+		System.out.print("[ë¡œê·¸ì¸] idë¥¼ ì…ë ¥í•˜ì„¸ìš” :");
 		String id = scan.next();
 		
 		for(int i=0; i<userList.size(); i++) {
@@ -64,22 +64,22 @@ public class UserManager {
 			}
 		}
 		if(userLog ==-1) {
-			System.out.println("[·Î±×ÀÎ]id¸¦ È®ÀÎÇØ ÁÖ¼¼¿ä.");
+			System.out.println("[ë¡œê·¸ì¸]idë¥¼ í™•ì¸í•´ ì£¼ì„¸ìš”.");
 			return false;
 		}
 		else {
-			System.out.println("[·Î±×ÀÎ] "+userList.get(userLog).getId()+"´Ô ·Î±×ÀÎ.");
+			System.out.println("[ë¡œê·¸ì¸] "+userList.get(userLog).getId()+"ë‹˜ ë¡œê·¸ì¸.");
 			return true;
 		}
 		
 	}
 	public void logoutUser() {
 		if(userLog != -1) {
-			System.out.println("[·Î±×¾Æ¿ô] ·Î±×¾Æ¿ô ¼º°ø!");
+			System.out.println("[ë¡œê·¸ì•„ì›ƒ] ë¡œê·¸ì•„ì›ƒ ì„±ê³µ!");
 			userLog =-1;
 		}
 		else {
-			System.out.println("[·Î±×¾Æ¿ô] ·Î±×ÀÎ ÈÄ ÀÌ¿ëÇØÁÖ¼¼¿ä.");
+			System.out.println("[ë¡œê·¸ì•„ì›ƒ] ë¡œê·¸ì¸ í›„ ì´ìš©í•´ì£¼ì„¸ìš”.");
 		}
 	
 	}
