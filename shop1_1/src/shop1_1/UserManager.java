@@ -9,6 +9,12 @@ public class UserManager {
 	Scanner scan = new Scanner(System.in);
 	
 	private int userLog = -1;
+	private UserManager(){
+		
+	}
+	public int userLog() {
+		return userLog;
+	}
 	
 	public void joinUser() {
 		int check = -1;
