@@ -37,18 +37,22 @@ public class Bank {
 	}
 	public void menu() {
 		while(true) {			
-			System.out.println("[Green Bank]\n1.로그인 \n2.회원가입 \n3.회원탈퇴 \n4.종료");
+			System.out.println("[Green Bank]\n1.로그인 \n2.회원가입 \n3.회원탈퇴 \n4.파일저장하기\n5.종료");
 			
 			System.out.println("메뉴선택 : ");
 			int sel=scan.nextInt();
 			if(sel==1) login();
 			else if(sel==2) joinUser();
 			else if(sel==3) dropoutUser();
-			else if(sel ==4) {
+			else if(sel==4) fileSave();
+			else if(sel ==5) {
 				System.out.println("[메세지]프로그램 종료");
 				break;
 			}
 		}
+	}
+	private void fileSave() {
+		FileManager.instance.saveDate();
 	}
 	private void loginMenu() {
 		while(true) {

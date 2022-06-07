@@ -30,6 +30,9 @@ public class UserManager {
 		}
 		return false;
 	}
+	public int userSize() {
+		return users.size();
+	}
 
 	public void removeUser(String id) {
 		boolean check = true;
@@ -55,6 +58,12 @@ public class UserManager {
 	}
 	public String getName(int idx) {
 		return users.get(idx).getName();
+	}
+	public String getId(int idx) {
+		return users.get(idx).getId();
+	}
+	public String getPw(int idx) {
+		return users.get(idx).getPw();
 	}
 
 	public String toString(int i) {
@@ -102,6 +111,12 @@ public class UserManager {
 			System.out.printf("[%d] accNum: %s money: %d원\n", (i+1), list.get(i).getAccNum(),list.get(i).getMoney());
 		}
 	}
+//	public ArrayList<Account> usersAccGetAccNum(int idx) {
+//		 return getUserAccList(idx);
+//	}
+//	public void usersAccGetMoney(int idx) {
+//		
+//	}
 	public void setUserPlusMoney(int Useridx, int accNum ,int money) {
 		ArrayList<Account> list = getUserAccList(Useridx);
 
