@@ -87,12 +87,17 @@ public class Shop {
 	}
 	public void managerMenu() {
 		while(true) {
-			System.out.println("1.아이템관리\n2.카테고리관리\n3.유저관리\n0.종료");
+			System.out.println("1.아이템관리\n2.카테고리관리\n0.종료");
 			int sel = scan.nextInt();
 			
 			if(sel==1) {
-				
+				im.administrateItem();
 			}
+			else if(sel==2) {
+				im.administrateCate();
+			}
+
+			else if(sel==0)break;
 		}
 	}
 	

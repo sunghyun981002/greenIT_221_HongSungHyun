@@ -46,12 +46,12 @@ public class ItemManager {
 		it = new Item("참치",12000,category.get(2));
 		itemList.add(it);
 	}
-	public void printCate() {
+	public void printCate() { // 카테고리 보여주기 
 		for(int i=0; i<category.size(); i++) {
 			System.out.println("["+i+"] "+category.get(i));
 		}
 	}
-	public void printItemList(int cateIdx) {
+	public void printItemList(int cateIdx) { // 구매과정에서 보여지는 아이템 리스트
 		int n=0;
 		for(int i=0; i<itemList.size(); i++) {
 			if(category.get(cateIdx).equals(itemList.get(i).getCategory())) {
@@ -59,6 +59,12 @@ public class ItemManager {
 				itemList.get(i).print();
 				n++;
 			}
+		}
+	}
+	public void printItemList() { // 아이템 관리 과정에서 보여지는 아이템 리스트 
+		for(int i=0; i<itemList.size(); i++) {
+			System.out.print("["+i+"]"); 
+			itemList.get(i).print();
 		}
 	}
 	public void printCart(User u) {
@@ -105,8 +111,69 @@ public class ItemManager {
 			}
 		}
 		cartList.add(ct);
+	}
+	public void administrateItem() {
+		printItemList(); // 일단 아이템리스트 보여주고 
+		System.out.println("[아이템 관리] 1.추가하기 2.삭제하기");
+		System.out.print("선택 : ");
+		int sel =scan.nextInt();
 		
+		if(sel ==1) {
+			System.out.print("[아이템 추가]제품명 : ");
+			String name = scan.next();
+			System.out.print("[아이템 추가]제품가격 :");
+			int price =scan.nextInt();
+			printCate();
+			System.out.print("[아이템 추가]카테고리 선택:");
+			int cateNum =scan.nextInt();
 			
+			Item it = new Item(name,price,category.get(cateNum));
+			itemList.add(it);
+			System.out.println("[아이템 추가]추가 완료!");
+		}
+		else if(sel ==2) {
+			System.out.print("[아이템 삭제]삭제할 번호: ");
+			int delNum = scan.nextInt();
+			itemList.remove(delNum);
+			System.out.println("[아이템 삭제]삭제 완료!: ");
+		}
+	}
+	public void administrateCate() {
+		printCate();
+		System.out.println("[카테고리 관리] 1.추가하기 2.삭제하기");
+		System.out.print("선택 : ");
+		int sel =scan.nextInt();
+		if(sel ==1) {
+			System.out.print("[카테고리 추가]카테고리명 : ");
+			String cateName=scan.next();
+			category.add(cateName);
+			System.out.println("[카테고리 추가]추가 완료!");
+		}
+		else if(sel==2) {
+			System.out.print("[카테고리 삭제]카테고리명 : ");
+			String delcateName=scan.next();
+			System.out.println("[카테고리 삭제]카테고리를 삭제하시면 해당 제품들도 삭제 됩니다. 진행하시겠습니까 ? y/n");
+			System.out.print("선택 : ");
+			String ans = scan.next();
+			
+			if(ans.equals("y")) {
+				for(int i=0; i<itemList.size(); i++) {
+					if(itemList.get(i).getName().equals(delcateName)) {
+						itemList.remove(i);
+					}
+				}
+				for(int i=0; i<category.size(); i++) {
+					if(category.get(i).equals(delcateName)) {
+						category.remove(i);
+					}
+				}
+				System.out.println("[카테고리 삭제]삭제 완료!");
+				
+			}
+			else {
+				System.out.println("[카테고리 삭제]취소하셨습니다.");
+			}
+		}
 		
 	}
 	
