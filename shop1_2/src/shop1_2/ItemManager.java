@@ -165,8 +165,8 @@ public class ItemManager {
 			String ans = scan.next();
 			
 			if(ans.equals("y")) {
-				for(int i=0; i<itemList.size(); i++) {
-					if(itemList.get(i).getName().equals(delcateName)) {
+				for(int i=itemList.size(); i>=0; i--) {
+					if(itemList.get(i).getCategory().equals(delcateName)) {
 						itemList.remove(i);
 					}
 				}

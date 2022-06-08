@@ -16,7 +16,7 @@ public class Shop {
 	}
 	public void menu() {
 		while(true) {
-			System.out.println("[Green Shop]\n1.가입\n2.탈퇴\n3.로그인\n4.로그아웃\n5.저장하기\n100.관리자\n0.종료");
+			System.out.println("[Green Shop]\n1.가입\n2.탈퇴\n3.로그인\n4.로그아웃\n100.관리자\n0.종료");
 			System.out.print("메뉴선택 : ");
 			int sel=scan.nextInt();
 			
@@ -24,14 +24,22 @@ public class Shop {
 			else if(sel==2) um.deleteUser();
 			else if(sel==3) loginMenu();
 			else if(sel==4) um.logoutUser();
-			else if(sel==5) fileSave();
 			else if(sel==100) managerMenu(); // 관리자 메뉴 만들어서 하기 
 			else if(sel==0) break;
 			
 		}
 	}
-	private void fileSave() {
-		FileManager.instance.saveData();
+	private void file() {
+		System.out.print("1.save 2.load :");
+		int sel=scan.nextInt();
+		if(sel ==1){
+			FileManager.instance.saveUserData();
+			FileManager.instance.saveItemList();
+		}
+		else if(sel==2) {
+			FileManager.instance.loadUserData();
+			FileManager.instance.loadItemListData();
+		}
 	}
 
 	public void loginMenu() {
@@ -103,7 +111,7 @@ public class Shop {
 	}
 	public void managerMenu() {
 		while(true) {
-			System.out.println("1.아이템관리\n2.카테고리관리\n0.종료");
+			System.out.println("1.아이템관리\n2.카테고리관리\n3.파일관리\n0.종료");
 			int sel = scan.nextInt();
 			
 			if(sel==1) {
@@ -112,6 +120,10 @@ public class Shop {
 			else if(sel==2) {
 				im.administrateCate();
 			}
+			else if(sel==3) {
+				file();
+			}
+
 
 			else if(sel==0)break;
 		}

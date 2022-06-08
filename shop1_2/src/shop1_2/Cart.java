@@ -5,10 +5,13 @@ public class Cart {
 	private String userId;
 	private String itemName;
 	
-//	Cart(String id , String name){
-//		this.userId = id;
-//		this.itemName = name;
-//	}
+	Cart(String id , String name){
+		this.userId = id;
+		this.itemName = name;
+	}
+	Cart(){
+		
+	}
 	
 	public String getUserId() {
 		return userId;
