@@ -51,7 +51,7 @@ public class Shop {
 				im.printItemList(cateIdx);
 				System.out.print("[아이템리스트]번호를 입력하세요: ");
 				int buyNum = scan.nextInt();
-				if(buyNum>=0&& im.getCnt()<buyNum) {
+				if(buyNum>=0&& im.getCnt()>buyNum) {
 					im.addCart(um.userList.get(um.userLog()).getId(), cateIdx, buyNum);				
 				}
 				else {
