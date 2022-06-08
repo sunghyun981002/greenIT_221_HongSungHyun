@@ -81,6 +81,7 @@ public class ItemManager {
 			}
 		}
 	}
+
 	public void clearCart(User u) {
 		for(int i=cartList.size()-1; i>=0; i--) {
 			if(u.getId().equals(cartList.get(i).getUserId())) {

@@ -2,6 +2,8 @@ package shop1_2;
 
 import java.util.Scanner;
 
+
+
 public class Shop {
 
 	public static Shop instance = new Shop();
@@ -14,7 +16,7 @@ public class Shop {
 	}
 	public void menu() {
 		while(true) {
-			System.out.println("1.가입\n2.탈퇴\n3.로그인\n4.로그아웃\n100.관리자\n0.종료");
+			System.out.println("[Green Shop]\n1.가입\n2.탈퇴\n3.로그인\n4.로그아웃\n5.저장하기\n100.관리자\n0.종료");
 			System.out.print("메뉴선택 : ");
 			int sel=scan.nextInt();
 			
@@ -22,10 +24,14 @@ public class Shop {
 			else if(sel==2) um.deleteUser();
 			else if(sel==3) loginMenu();
 			else if(sel==4) um.logoutUser();
+			else if(sel==5) fileSave();
 			else if(sel==100) managerMenu(); // 관리자 메뉴 만들어서 하기 
 			else if(sel==0) break;
 			
 		}
+	}
+	private void fileSave() {
+		FileManager.instance.saveData();
 	}
 
 	public void loginMenu() {
