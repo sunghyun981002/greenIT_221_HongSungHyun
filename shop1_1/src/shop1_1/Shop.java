@@ -47,13 +47,21 @@ public class Shop {
 			im.printCate();
 			System.out.print("[카테고리]번호를 입력하세요(종료 -1): ");
 			int cateIdx = scan.nextInt();
+			if(cateIdx >=0 && cateIdx <im.category.size()) {
+				im.printItemList(cateIdx);
+				System.out.print("[아이템리스트]번호를 입력하세요: ");
+				int buyNum = scan.nextInt();
+				if(buyNum>=0&& im.getCnt()<buyNum) {
+					im.addCart(um.userList.get(um.userLog()).getId(), cateIdx, buyNum);				
+				}
+				else {
+					System.out.println("범위 초과.");
+				}
+				
+			}
 			if(cateIdx ==-1) {
 				break;
 			}
-			im.printItemList(cateIdx);
-			System.out.print("[아이템리스트]번호를 입력하세요: ");
-			int buyNum = scan.nextInt();
-			im.addCart(um.userList.get(um.userLog()).getId(), cateIdx, buyNum);
 			
 		}
 		

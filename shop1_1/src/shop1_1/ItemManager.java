@@ -10,7 +10,7 @@ public class ItemManager {
 	ArrayList<Item> itemList = new ArrayList<Item>();
 	ArrayList<String> category = new ArrayList<String>();
 	ArrayList<Cart> cartList = new ArrayList<Cart>();
-	
+	private int cnt = 0;
 	private ItemManager(){
 		init();
 	}
@@ -60,6 +60,11 @@ public class ItemManager {
 				n++;
 			}
 		}
+		cnt =n;
+		
+	}
+	public int getCnt() {
+		return cnt;
 	}
 	public void printItemList() { // 아이템 관리 과정에서 보여지는 아이템 리스트 
 		for(int i=0; i<itemList.size(); i++) {
