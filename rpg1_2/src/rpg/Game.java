@@ -17,7 +17,7 @@ public class Game {
 		while(true) {
 			System.out.println("=============== [메인메뉴] ================");
 			System.out.println("[1.길드관리] [2.상점] [3.인벤토리]");
-			System.out.println("[4.저장] [5.로드] [0.종료]");
+			System.out.println("[4.저장] [5.로드] [6.사냥] [0.종료]");
 			int sel = scan.nextInt();
 			if(sel ==1) Player.instance.guildMenu();
 			else if(sel==2) Shop.instance.shopMenu();
@@ -36,6 +36,7 @@ public class Game {
 					e.printStackTrace();
 				}
 			}
+			else if(sel==6) Hunt.instance.partyHunt();
 			else if(sel==0) {
 				System.out.println("게임 종료!");
 				break;

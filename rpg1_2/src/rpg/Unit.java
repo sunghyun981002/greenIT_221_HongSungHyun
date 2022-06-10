@@ -54,7 +54,7 @@ public class Unit {
 	}
 
 	public void setLevel(int level) {
-		this.level = level;
+		this.level += level;
 	}
 
 	public int getHp() {
@@ -62,7 +62,7 @@ public class Unit {
 	}
 
 	public void setHp(int hp) {
-		this.hp = hp;
+		this.hp += hp;
 	}
 
 	public int getMaxHp() {
@@ -70,7 +70,7 @@ public class Unit {
 	}
 
 	public void setMaxHp(int maxHp) {
-		this.maxHp = maxHp;
+		this.maxHp += maxHp;
 	}
 
 	public int getAtt() {
@@ -78,7 +78,7 @@ public class Unit {
 	}
 
 	public void setAtt(int att) {
-		this.att = att;
+		this.att += att;
 	}
 
 	public int getDef() {
@@ -86,7 +86,7 @@ public class Unit {
 	}
 
 	public void setDef(int def) {
-		this.def = def;
+		this.def += def;
 	}
 
 	public int getExp() {
@@ -94,7 +94,7 @@ public class Unit {
 	}
 
 	public void setExp(int exp) {
-		this.exp = exp;
+		this.exp += exp;
 	}
 
 	public boolean isParty() {
