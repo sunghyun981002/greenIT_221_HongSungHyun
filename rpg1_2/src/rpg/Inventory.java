@@ -43,12 +43,12 @@ public class Inventory {
 		Guild.instace.printAllguildList();
 		System.out.print("아이템을 착용할 길드원 선택 : ");
 		int sel = scan.nextInt();
-		sel -=1;
+//		sel -=1;
 		while(true) {
 			Guild.instace.printUnitStatus(sel-1);
 			Guild.instace.printCheckItem(sel-1);
 			printIvenItemList();
-			System.out.print("착용할 아이템 번호를 입력하세요 [0. 종료]");
+			System.out.print("착용/사용할 아이템 번호를 입력하세요 [0. 종료]");
 			int selEq = scan.nextInt();
 			if(selEq==0)break;
 			selEq -=1;
@@ -69,6 +69,9 @@ public class Inventory {
 					invenItemList.add(Player.instance.getGuildUnit(sel).getRing());
 				}
 				Player.instance.getGuildUnit(sel).setRing(invenItemList.get(selEq));
+			}
+			else if(invenItemList.get(selEq).getKind() == Item.POTION) {
+				Guild.instace.guildList.get(sel).setPlusHp(invenItemList.get(selEq).getPower());
 			}
 			invenItemList.remove(selEq);
 		}

@@ -5,6 +5,8 @@ public class Item {
 	static final int WEAPON =1;
 	static final int ARMOR =2;
 	static final int RING =3;
+	static final int POTION =4;
+	
 	private int kind,power,price;
 	private String name;
 	

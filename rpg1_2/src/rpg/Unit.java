@@ -13,6 +13,7 @@ public class Unit {
 	private Item weapon;
 	private Item armor;
 	private Item ring;
+	
 
 	public Unit(String n, int l, int h, int a, int d, int e) {
 		name = n;
@@ -62,7 +63,13 @@ public class Unit {
 	}
 
 	public void setHp(int hp) {
+		this.hp = hp;
+	}
+	public void setPlusHp(int hp) {
 		this.hp += hp;
+	}
+	public void setMinusHp(int hp) {
+		this.hp -= hp;
 	}
 
 	public int getMaxHp() {
@@ -133,9 +140,9 @@ public class Unit {
 		System.out.println("[이름 : " + name + "]");
 		System.out.println("[레벨 : " + level + "]");
 		if (ring != null) {
-			System.out.print(" [체력 : " + hp + " + " + ring.getPower());
+			System.out.print("[체력 : " + hp + " + " + ring.getPower());
 		} else {
-			System.out.print(" [체력 : " + hp);
+			System.out.print("[체력 : " + hp);
 		}
 		if (ring != null) {
 			System.out.println(" / " + maxHp + " + " + ring.getPower() + "]");
