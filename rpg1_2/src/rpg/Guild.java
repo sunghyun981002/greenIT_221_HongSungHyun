@@ -137,32 +137,43 @@ public class Guild {
     }
     
     public void changeParty() {
+    	boolean check =true;
     	printParty();
     	System.out.print("교체할 번호 입력: ");
     	int partyNum = scan.nextInt();
     	printAllguildList();
     	System.out.print("참가할 번호 입력: ");
     	int guildNum = scan.nextInt();
-    	
-    	guildList.get(guildNum-1).setParty(true);
-    	guildList.get(partyNum-1).setParty(false);
+    	for(int i=0; i<partyList.size(); i++) {
+    		if(partyList.get(i).getName().equals(guildList.get(guildNum-1).getName())) {
+    			check =false;
+    		}
+    	}
+    	if(check) {
+    		guildList.get(guildNum-1).setParty(true);
+    		guildList.get(partyNum-1).setParty(false);
 //    	partyList.get(partyNum-1).setParty(false);
-    	
-    	partyList.remove(partyNum-1);
-    	partyList.add(guildList.get(guildNum-1));
-    	
-		System.out.println("====================================");
-		System.out.print("[이름 : " + guildList.get(partyNum - 1).getName() + "]");
-		System.out.print("에서 ");
-		System.out.print("[이름 : " + guildList.get(guildNum - 1).getName() + "]");
-		System.out.println("으로 교체 합니다. ");
-		System.out.println("====================================");
-		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+    		
+    		partyList.remove(partyNum-1);
+    		partyList.add(guildList.get(guildNum-1));
+    		
+    		System.out.println("====================================");
+    		System.out.print("[이름 : " + guildList.get(partyNum - 1).getName() + "]");
+    		System.out.print("에서 ");
+    		System.out.print("[이름 : " + guildList.get(guildNum - 1).getName() + "]");
+    		System.out.println("으로 교체 합니다. ");
+    		System.out.println("====================================");
+    		
+    		try {
+    			Thread.sleep(1000);
+    		} catch (InterruptedException e) {
+    			e.printStackTrace();
+    		}
+    		
+    	}
+    	else {
+    		System.out.println(guildList.get(guildNum-1).getName()+"님은 이미 파티에 속해있습니다.");
+    	}
     }
     public void sortGuildList() {
     	for(int i=0; i<guildList.size(); i++) {
