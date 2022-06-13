@@ -14,7 +14,7 @@ public class Hunt {
 	//파티원들끼리 사냥을 나가서 경험치가(50/level)0이하면 1올리기)  올라가고 경험치가 100이 되면 레벨이 1 올라가고 
 	// 레벨이 1 올라가면 스탯hp,att,def중 하나가 5 오르는거로 하자 
 	
-	
+	//dd
 	public void partyHunt() {
 		if(Pl.size() !=0) {
 			if(checkHp()) {
