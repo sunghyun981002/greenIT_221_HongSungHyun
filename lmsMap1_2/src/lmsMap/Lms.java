@@ -16,7 +16,7 @@ public class Lms {
 	
 	private boolean isRun;
 	
-	private String[] menuList = {"등록","수정","삭제","조회","종료"};
+	private String[] menuList = {"등록","수정","삭제","조회","불러오기","종료"};
 	
 	public Lms(String name) { //생성자 (이름받고, sc는 컨트롤러 받아오고 런은 트류)
 		this.name = name; 
@@ -42,7 +42,8 @@ public class Lms {
 			else if(sel==2) sc.updateStudent();
 			else if(sel==3) sc.deleteStudent();
 			else if(sel==4) sc.printStudents();
-			else if(sel==5) {
+			else if(sel==5) sc.loadData();
+			else if(sel==6) {
 				sc.saveData();
 				this.isRun = false;
 			}

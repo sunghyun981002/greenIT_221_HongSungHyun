@@ -18,6 +18,9 @@ public class StudentController {
 	public void saveData() {
 
 	}
+	public void loadData() {
+		
+	}
 
 	public void printStudents() {
 		Iterator<Integer> keys = dao.getKeyset(); // StudentDAO.stuDb.keySet().iterator();
