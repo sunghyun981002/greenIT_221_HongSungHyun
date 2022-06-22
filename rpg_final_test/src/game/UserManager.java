@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class UserManager {
 	public static UserManager instance = new UserManager();
 	private int userLog = -1;
+
 	public int getUserLog() {
 		return this.userLog;
 	}
@@ -49,6 +50,7 @@ public class UserManager {
 		for(int i=0; i<userList.size(); i++) {
 			if(userList.get(i).getId().equals(id)&&userList.get(i).getPw().equals(pw)) {
 				userLog = i;
+				Guild.instace.checkLogId(id);
 				break;
 			}
 		}
@@ -63,6 +65,7 @@ public class UserManager {
 		}
 		
 	}
+
 	public void deleteUser() {
 		int delIdx = -1;
 		System.out.print("[탈퇴]탈퇴할 id를 입력해주세요. : " );

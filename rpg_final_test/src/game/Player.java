@@ -6,11 +6,9 @@ import java.util.ArrayList;
 public class Player {
 	public static Player instance = new Player();
 	public int money;
+	public String UserId;
 	
- 
-
-	private Player(){
-		money =100000;
+    private Player(){
 		
 	}
 	
