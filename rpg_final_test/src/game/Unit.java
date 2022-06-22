@@ -1,6 +1,7 @@
 package game;
 
 public class Unit {
+	private String userId;
 	private String name;
 	private int level;
 	private int hp;
@@ -15,7 +16,21 @@ public class Unit {
 	private Item ring;
 	
 
-	public Unit(String n, int l, int h, int a, int d, int e) {
+//	public Unit(String n, int l, int h, int a, int d, int e) {
+//		name = n;
+//		level = l;
+//		maxHp = h;
+//		att = a;
+//		def = d;
+//		exp = e;
+//		hp = maxHp;
+//		party = false;
+//		weapon = null;
+//		armor = null;
+//		ring = null;
+//	}
+	public Unit(String userId,String n, int l, int h, int a, int d, int e) {
+		this.userId = userId;
 		name = n;
 		level = l;
 		maxHp = h;
@@ -28,6 +43,10 @@ public class Unit {
 		armor = null;
 		ring = null;
 	}
+	public String getUserId() {
+		return userId;
+	}
+
 	public Unit(String n, int l, int h, int a, int d, int e, boolean p) {
 		name = n;
 		level = l;

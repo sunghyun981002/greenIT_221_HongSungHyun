@@ -11,7 +11,7 @@ public class Player {
 
 	private Player(){
 		money =100000;
-		Guild.instace.setGuild();
+		
 	}
 	
 	//Guild 

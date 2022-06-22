@@ -12,34 +12,43 @@ public class Guild {
 	ArrayList<Unit> partyList = new ArrayList<>();
 	Random ran = new Random();
 	Scanner scan = new Scanner(System.in);
+	private String checkLogId;
 	private Guild() {
 		
 	}
 	
-	public void setGuild() {
-		Unit temp = new Unit("성현",100,100,100,100,99);
+	public void setGuild(String id) {
+		checkLogId =id;
+		Unit temp = new Unit(id,"성현",100,100,100,100,99);
 		guildList.add(temp);
-		temp = new Unit("하늘",10,10,10,10,10);
+		temp = new Unit(id,"하늘",10,10,10,10,10);
 		guildList.add(temp);
-		temp = new Unit("수지",3,50,10,30,1);
+		temp = new Unit(id,"수지",3,50,10,30,1);
 		guildList.add(temp);
-		temp = new Unit("태연",5,80,20,10,1);
+		temp = new Unit(id,"태연",5,80,20,10,1);
 		guildList.add(temp);
-		temp = new Unit("혜리",7,90,20,3,1);
+		temp = new Unit(id,"혜리",7,90,20,3,1);
 		guildList.add(temp);
-		temp = new Unit("이현",17,80,30,30,2);
+		temp = new Unit(id,"이현",17,80,30,30,2);
 		guildList.add(temp);
 		
 		// party =True 부여 
-		for(int i=0; i<4; i++) {
-			guildList.get(i).setParty(true);
+		
+
+		for(int j=guildList.size()-6; j<guildList.size()-2; j++) { //생성될떄마다 1~4번쨰 친구한테 부여(길드 사이즈 -6
+			guildList.get(j).setParty(true);					
 		}
+			
+		
 		setPartyList();
+	}
+	public void partyTrue() {
+		
 	}
 	public void setPartyList() {
 		// partyList에 넣어주기 
 		for(int i=0; i<guildList.size();i++) {
-			if(guildList.get(i).isParty()==true){// 파티가 트루일때 영입
+			if(guildList.get(i).isParty()==true&&guildList.get(i).getUserId().equals(checkLogId)){// 파티가 트루일때 영입
 				partyList.add(guildList.get(i));
 			}	
 		}
@@ -54,16 +63,21 @@ public class Guild {
 		System.out.println("======================================");
 		System.out.println("[골드 : " + Player.instance.money + "]"); //플레이어 만들어주고 다시오기
 		System.out.println("============= [길드원] =================");
+		int n =0;
 		for(int i=0; i<guildList.size(); i++) {
-			System.out.print("[" + (i + 1) + "번]");
-			System.out.print(" [이름 : " + guildList.get(i).getName() + "]");
-			System.out.print(" [레벨 : " + guildList.get(i).getLevel() + "]");
-			System.out.print(" [체력 : " + guildList.get(i).getHp());
-			System.out.println(" / " + guildList.get(i).getMaxHp() + "]");
-			System.out.print("[공격력 : " + guildList.get(i).getAtt() + "]");
-			System.out.print(" [방어력 : " + guildList.get(i).getDef() + "]");
-			System.out.println(" [파티중 : " + guildList.get(i).isParty() + "]");
-			System.out.println("");
+			if(guildList.get(i).getUserId().equals(checkLogId)) {
+				System.out.print("[" + (n + 1) + "번]");
+				System.out.print(" [이름 : " + guildList.get(i).getName() + "]");
+				System.out.print(" [레벨 : " + guildList.get(i).getLevel() + "]");
+				System.out.print(" [체력 : " + guildList.get(i).getHp());
+				System.out.println(" / " + guildList.get(i).getMaxHp() + "]");
+				System.out.print("[공격력 : " + guildList.get(i).getAtt() + "]");
+				System.out.print(" [방어력 : " + guildList.get(i).getDef() + "]");
+				System.out.println(" [파티중 : " + guildList.get(i).isParty() + "]");
+				System.out.println("");				
+				n++;	
+			}
+			
 		}
 		System.out.println("=================================");
 		
@@ -82,7 +96,7 @@ public class Guild {
 		int hp = ranN *10;
 		int att = ranN+2;
 		int def = ranN;
-		Unit temp = new Unit(name,1,hp,att,def,0);
+		Unit temp = new Unit(UserManager.instance.userList.get(UserManager.instance.getUserLog()).getId(),name,1,hp,att,def,0);
 		
 		System.out.println("=====================================");
 		System.out.print("[이름 : " + name + "]");
