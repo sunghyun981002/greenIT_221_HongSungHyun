@@ -38,20 +38,14 @@ public class Shop {//shop은 player 마다 나눌 필요가 없음으로 싱글�
 		itemList.add(temp);
 		
 		
-		//potion
-		temp = new Item(Item.POTION,"초급포션",5,1000);
-		itemList.add(temp);
-		temp = new Item(Item.POTION,"중급포션",10,2000);
-		itemList.add(temp);
-		temp = new Item(Item.POTION,"고급포션",20,2500);
-		itemList.add(temp);
-			
+
+
 		
 	}
 	public void shopMenu(){
 		while(true) {
 			System.out.println("=================== [상점] ===================");
-			System.out.println("[1.무기] [2.갑옷] [3.반지] [4.포션] [0.뒤로가기]");
+			System.out.println("[1.무기] [2.갑옷] [3.반지] [0.뒤로가기]");
 			int sel =Game.instance.scan.nextInt(); 
 			if(sel ==0)return;
 			while(true) {
@@ -61,8 +55,6 @@ public class Shop {//shop은 player 마다 나눌 필요가 없음으로 싱글�
 					System.out.println("=========== [방어구] ============");
 				else if(sel ==Item.RING)
 					System.out.println("=========== [반지] ============");
-				else if(sel ==Item.POTION)
-					System.out.println("=========== [포션] ============");
 				
 				printItems(sel);
 				System.out.println("[보유 골드 : "+PlayerManager.instance.playerList.get(PlayerManager.instance.playerLog()).getMoney() +"]");

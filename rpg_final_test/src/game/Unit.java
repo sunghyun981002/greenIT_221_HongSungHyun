@@ -184,5 +184,27 @@ public class Unit {
 			System.out.println("[반지 : " + ring.getName() + "]");
 		}
 	}
+	public void attack(Monster target) {
+		target.curhp -= att;
+		System.out.println("[" + name + "] >>>>>" + "[" + target.name + "] <" + att + "> ");
+		if (target.curhp <= 0) {
+			System.out.println("[" + target.name + "] 을 쳐치했습니다.");
+			target.curhp = 0;
+		}
+	}
+	public void drinlPotion() {
+		if(maxHp>=(hp+100)){
+			hp +=100 ;
+			System.out.println("[" + name + "] (" + (hp-100) +")->("+hp+")");
+		}
+		else if(maxHp<=(hp +100)) {
+			hp = maxHp;
+			System.out.println("[" + name + "] (" +hp+") 풀피 충전!");
+		}
+		else if(hp==maxHp) {
+			System.out.println("이미 풀피여서 물약 아까움.");
+		}
+		
+	}
 
 }

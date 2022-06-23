@@ -18,6 +18,7 @@ public class HuntManager {
 	}
 
 	boolean changeStage() {
+		
 		System.out.println("curStage : " + curStage);
 		System.out.println("nextStage : " + nextStage);
 
@@ -35,8 +36,10 @@ public class HuntManager {
 				break;
 		}
 
-		if (nextStage.equals(""))
+		if (nextStage.equals("")) {
+			nextStage = "TITLE";
 			return false;
+		}
 		else
 			return true;
 	}

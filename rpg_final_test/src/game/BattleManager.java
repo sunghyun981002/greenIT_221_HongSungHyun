@@ -6,18 +6,20 @@ public class BattleManager {
 	ArrayList<Unit> partyList = new ArrayList<>();
 	ArrayList<Monster> monsterList = new ArrayList<>();
 	String Path ="game.";
-	String mons[] = {"Wolf" ,"zombie" , "Bat"};
+	String mons[] = { "MonsterBat", "MonsterZombie" ,"MonsterWolf"};
+	private int cnt=-1;
 	
 
 	public void monsterRandomSet(int size) {
+		cnt++;
+		
 		for(int i=0; i<size; i++) {
-			int num = Guild.instace.ran.nextInt(mons.length);
 			try {
-				Class<?> clazz = Class.forName(Path+mons[num]);
+				Class<?> clazz = Class.forName(Path+mons[cnt]);
 				Object obj =clazz.getDeclaredConstructor().newInstance();
 				Monster temp = (Monster) obj;
-				int hp = Guild.instace.ran.nextInt(100)+200;
-				int pow = Guild.instace.ran.nextInt(10)+15;
+				int hp = Guild.instace.ran.nextInt(100)+(20*cnt);
+				int pow = Guild.instace.ran.nextInt(50)+(20*cnt);
 				temp.init(hp,pow);
 				monsterList.add(temp);
 			} catch (Exception e) {

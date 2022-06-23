@@ -31,12 +31,12 @@ public abstract class Monster {
 		curhp = max;
 		power = pw;
 	}
-	void attack(Monster target) {
-		target.curhp -= power;
-		System.out.println("[" + name + "] 이 " + "[" + target.name + "] 에게 " + power + "의 데미지를 입힙니다. ");
-		if (target.curhp <= 0) {
-			System.out.println("[" + target.name + "] 을 쳐치했습니다.");
-			target.curhp = 0;
+	void attack(Unit target) {
+		target.setMinusHp(power/(target.getDef()/10)); 
+		System.out.println("[" + target.getName() + "]  <<<<" + "[" + name + "] <" + power + "> ");
+		if (target.getHp() <= 0) {
+			System.out.println("[" + target.getName() + "] 을 쳐치했습니다.");
+			target.setHp(0);
 		}
 	}
 
