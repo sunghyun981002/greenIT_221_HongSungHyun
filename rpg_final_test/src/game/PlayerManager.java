@@ -2,16 +2,16 @@ package game;
 
 import java.util.ArrayList;
 
-public class UserManager {
-	public static UserManager instance = new UserManager();
-	private int userLog = -1;
+public class PlayerManager {
+	public static PlayerManager instance = new PlayerManager();
+	private int playerLog = -1;
 
 	public int getUserLog() {
-		return this.userLog;
+		return this.playerLog;
 	}
-	ArrayList<User> userList = new ArrayList<>();
+	ArrayList<Player> playerList = new ArrayList<>();
 	
-	private UserManager(){
+	private PlayerManager(){
 		
 	}
 
@@ -23,15 +23,15 @@ public class UserManager {
 		System.out.print("[회원가입] pw :");
 		String pw = Game.instance.scan.next();
 		
-		for(int i=0; i<userList.size(); i++) {
-			if(userList.get(i).getId().equals(id)) {
+		for(int i=0; i<playerList.size(); i++) {
+			if(playerList.get(i).getId().equals(id)) {
 				check =1;
 			}
 			
 		}
 		if(check ==-1) {
-			User us = new User(id,pw);
-			userList.add(us);
+			Player pl = new Player(id,pw);
+			playerList.add(pl);
 			Guild.instace.setGuild(id);
 			System.out.println("[회원가입]성공!");
 			
@@ -41,29 +41,32 @@ public class UserManager {
 		}
 	}
 	public boolean loginUser() {
-		userLog = -1;
+		playerLog = -1;
 		System.out.print("[로그인] id를 입력하세요 : ");
 		String id = Game.instance.scan.next();
 		System.out.print("[로그인] pw를 입력하세요 : ");
 		String pw = Game.instance.scan.next();
 		
-		for(int i=0; i<userList.size(); i++) {
-			if(userList.get(i).getId().equals(id)&&userList.get(i).getPw().equals(pw)) {
-				userLog = i;
+		for(int i=0; i<playerList.size(); i++) {
+			if(playerList.get(i).getId().equals(id)&&playerList.get(i).getPw().equals(pw)) {
+				playerLog = i;
 				Guild.instace.checkLogId(id);
 				break;
 			}
 		}
-		if(userLog ==-1) {
+		if(playerLog ==-1) {
 			System.out.println("[로그인]id나pw를 확인해 주세요.");
 			return false;
 		}
 		else {
-			System.out.println("[로그인] "+userList.get(userLog).getId()+"님 로그인.");
+			System.out.println("[로그인] "+playerList.get(playerLog).getId()+"님 로그인.");
 			
 			return true;
 		}
 		
+	}
+	public int playerLog() {
+		return playerLog;
 	}
 
 	public void deleteUser() {
@@ -72,8 +75,8 @@ public class UserManager {
 		String delId = Game.instance.scan.next();
 		System.out.print("[탈퇴]탈퇴할 pw를 입력해주세요. : " );
 		String delpw = Game.instance.scan.next();
-		for(int i=0; i<userList.size(); i++) {
-			if( userList.get(i).getId().equals(delId)&&userList.get(i).getPw().equals(delpw)) {
+		for(int i=0; i<playerList.size(); i++) {
+			if( playerList.get(i).getId().equals(delId)&&playerList.get(i).getPw().equals(delpw)) {
 				delIdx = i;	
 			}
 		}
@@ -82,8 +85,8 @@ public class UserManager {
 			String ans = Game.instance.scan.next();
 			
 			if(ans.equals("y")) {
-				userList.remove(delIdx);
-				userLog =-1;
+				playerList.remove(delIdx);
+				playerLog =-1;
 				System.out.println("[탈퇴]탈퇴되었습니다.");
 			}		
 		}
@@ -93,8 +96,8 @@ public class UserManager {
 	}
 	public void printUserList() {
 		System.out.println("[회원 목록]");
-		for(int i=0; i<userList.size(); i++) {
-			System.out.print((i+1)+")  ID : "+userList.get(i).getId()+"\n");
+		for(int i=0; i<playerList.size(); i++) {
+			System.out.print((i+1)+")  ID : "+playerList.get(i).getId()+"\n");
 		}
 	}
 	

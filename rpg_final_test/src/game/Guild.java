@@ -16,12 +16,22 @@ public class Guild {
 	private int partyAllNum=-1;
 	private int guildUserNum=0;
 	private int partyUserNum=4;
+
 	private Guild() {
 		
 	}
 	public void checkLogId(String id) {
 		checkLogId =id;
 		
+	}
+	public String getLogId() {
+		return this.checkLogId;
+	}
+	public int getGuildAllNum() {
+		return this.guildAllNum;
+	}
+	public int getGuildUserNum() {
+		return this.guildUserNum;
 	}
 	public void setGuild(String id) {
 		Unit temp = new Unit(id,"성현",100,100,100,100,99);
@@ -67,7 +77,7 @@ public class Guild {
 	
 	public void printAllguildList() { //길드원 플레이 
 		System.out.println("======================================");
-		System.out.println("[골드 : " + Player.instance.money + "]"); //플레이어 만들어주고 다시오기
+		System.out.println("[골드 : " +PlayerManager.instance.playerList.get(PlayerManager.instance.playerLog()).getMoney() + "]"); //플레이어 만들어주고 다시오기
 		System.out.println("============= [길드원] =================");
 		int n=0;
 		guildUserNum=-1;
@@ -95,7 +105,7 @@ public class Guild {
 	}
 	
 	public void addUnit() { // 길드원 생성 
-		if(Player.instance.money <5000)return;
+		if(PlayerManager.instance.playerList.get(PlayerManager.instance.playerLog()).getMoney() <5000)return;
 		
 		
 		String[] n1 = {"시","주","성","기","재","수","지","정",};
@@ -125,7 +135,8 @@ public class Guild {
 			e.printStackTrace();
 		}
 		guildList.add(temp);
-		Player.instance.money -=5000;
+		int minusMoney =PlayerManager.instance.playerList.get(PlayerManager.instance.playerLog()).getMoney() -5000;
+		PlayerManager.instance.playerList.get(PlayerManager.instance.playerLog()).setMoney(minusMoney);
 	}
     public void removeUnit() { // 길드원 삭제
     	printAllguildList();

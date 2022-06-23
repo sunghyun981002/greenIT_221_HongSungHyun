@@ -4,12 +4,43 @@ import java.util.ArrayList;
 
 
 public class Player {
-	public static Player instance = new Player();
-	public int money;
-	public String UserId;
+
+	private int money;
 	
-    private Player(){
-		
+    private String id,pw;
+    
+    private ArrayList<Item> inventory = new ArrayList<>(); 
+ 
+	
+	Player(String id , String pw){
+		this.id= id;
+		this.pw = pw;
+		money =100000;
+
+	}
+
+	public ArrayList<Item> getInventory() {
+		return inventory;
+	}
+
+	public void setInventory(Item item) {
+		this.inventory.add(item);
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getPw() {
+		return pw;
+	}
+
+	public void setPw(String pw) {
+		this.pw = pw;
 	}
 	
 	//Guild 
@@ -20,15 +51,17 @@ public class Player {
 	public ArrayList<Unit> getGuildList(){
 		return Guild.instace.guildList;
 	}
-	public ArrayList<Item> getItemList() {
-		return Inventory.instance.invenItemList;
-	}
-
-	public int getItemSize() {
-		return Inventory.instance.invenItemList.size();
-	}
+	
 
 	public Unit getGuildUnit(int num) {
 		return Guild.instace.getGuildUnit(num);
+	}
+
+	public int getMoney() {
+		return money;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
 	}
 }

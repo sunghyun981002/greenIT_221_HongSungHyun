@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 import java.util.Random;
 import java.util.Scanner;
-public class Shop {
+public class Shop {//shop은 player 마다 나눌 필요가 없음으로 싱글톤 처리 
 	public static Shop instance = new Shop();
 	
 	ArrayList<Item> itemList = new ArrayList<>();
-	Scanner scan = new Scanner(System.in);
 	Random ran = new Random();
+	
 	
 	
 	private Shop() {
@@ -52,7 +52,7 @@ public class Shop {
 		while(true) {
 			System.out.println("=================== [상점] ===================");
 			System.out.println("[1.무기] [2.갑옷] [3.반지] [4.포션] [0.뒤로가기]");
-			int sel =scan.nextInt(); 
+			int sel =Game.instance.scan.nextInt(); 
 			if(sel ==0)return;
 			while(true) {
 				if(sel==Item.WEAPON) 
@@ -65,17 +65,19 @@ public class Shop {
 					System.out.println("=========== [포션] ============");
 				
 				printItems(sel);
-				System.out.println("[보유 골드 : "+ Player.instance.money +"]");
+				System.out.println("[보유 골드 : "+PlayerManager.instance.playerList.get(PlayerManager.instance.playerLog()).getMoney() +"]");
 				System.out.println("구입할 아이템 번호를 입력하세요 [0.뒤로가기]");
-				int selNum =scan.nextInt();
+				int selNum =Game.instance.scan.nextInt(); 
 				if (selNum ==0)break;
 				int cnt =0;
 				for(int i=0; i<itemList.size(); i++) {
 					if(itemList.get(i).getKind() ==sel) {
 						cnt+=1;
 						if(cnt ==selNum) {
-						    Inventory.instance.addItem(itemList.get(i));
-							Player.instance.money -=itemList.get(i).getPrice();
+							Item putInvenItem = new Item(Guild.instace.getLogId(),itemList.get(i).getKind(),itemList.get(i).getName(),itemList.get(i).getPower(),itemList.get(i).getPrice());
+							PlayerManager.instance.playerList.get(PlayerManager.instance.playerLog()).setInventory(putInvenItem); // user id 넣어주기 
+						    int money = PlayerManager.instance.playerList.get(PlayerManager.instance.playerLog()).getMoney() - itemList.get(i).getPrice();
+						    PlayerManager.instance.playerList.get(PlayerManager.instance.playerLog()).setMoney(money);
 							System.out.println("[" + itemList.get(i).getName() + "] 을 구입했습니다.");
 							try {
 								Thread.sleep(1000);
