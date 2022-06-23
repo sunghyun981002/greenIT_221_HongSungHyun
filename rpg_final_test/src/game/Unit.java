@@ -8,27 +8,12 @@ public class Unit {
 	private int maxHp;
 	private int att;
 	private int def;
-
 	private int exp;
 	private boolean party;
 	private Item weapon;
 	private Item armor;
 	private Item ring;
 	
-
-//	public Unit(String n, int l, int h, int a, int d, int e) {
-//		name = n;
-//		level = l;
-//		maxHp = h;
-//		att = a;
-//		def = d;
-//		exp = e;
-//		hp = maxHp;
-//		party = false;
-//		weapon = null;
-//		armor = null;
-//		ring = null;
-//	}
 	public Unit(String userId,String n, int l, int h, int a, int d, int e) {
 		this.userId = userId;
 		name = n;
@@ -159,17 +144,17 @@ public class Unit {
 		System.out.println("[이름 : " + name + "]");
 		System.out.println("[레벨 : " + level + "]");
 		if (ring != null) {
-			System.out.print("[체력 : " + hp + " + " + ring.getPower());
+			System.out.print("[체력 : " + hp + " (" + ring.getPower()+"증가)");
 		} else {
 			System.out.print("[체력 : " + hp);
 		}
 		if (ring != null) {
-			System.out.println(" / " + maxHp + " + " + ring.getPower() + "]");
+			System.out.println(" / " + maxHp + " (" + ring.getPower() + " 증가)]");
 		} else {
 			System.out.println(" / " + maxHp + "]");
 		}
 		if (weapon != null) {
-			System.out.print("[공격력 : " + att + " + " + weapon.getPower() + "]");
+			System.out.print("[공격력 : " + att + " (" + weapon.getPower() + " 증가)]");
 		} else {
 			System.out.print("[공격력 : " + att + "]");
 		}

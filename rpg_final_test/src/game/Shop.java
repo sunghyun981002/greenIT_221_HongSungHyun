@@ -14,27 +14,27 @@ public class Shop {//shop은 player 마다 나눌 필요가 없음으로 싱글�
 	
 	private Shop() {
 		//weapon
-		Item temp = new Item(Item.WEAPON,"나무검",2,1000);
+		Item temp = new Item(Item.WEAPON,"나무검",10,1000);
 		itemList.add(temp);
-		temp = new Item(Item.WEAPON,"철검",6,2000);
+		temp = new Item(Item.WEAPON,"철검",16,2000);
 		itemList.add(temp);
-		temp = new Item(Item.WEAPON,"티타늄검",8,3000);
+		temp = new Item(Item.WEAPON,"티타늄검",28,3000);
 		itemList.add(temp);
 		
 		// armor
-		temp = new Item(Item.ARMOR,"1렙조끼",1,1000);
+		temp = new Item(Item.ARMOR,"1렙조끼",10,1000);
 		itemList.add(temp);
-		temp = new Item(Item.ARMOR,"2렙조끼",5,2000);
+		temp = new Item(Item.ARMOR,"2렙조끼",50,2000);
 		itemList.add(temp);
-		temp = new Item(Item.ARMOR,"3렙조끼",8,3000);
+		temp = new Item(Item.ARMOR,"3렙조끼",80,3000);
 		itemList.add(temp);
 		
 		//ring
-		temp = new Item(Item.RING,"은반지",7,4000);
+		temp = new Item(Item.RING,"은반지",50,4000);
 		itemList.add(temp);
-		temp = new Item(Item.RING,"금반지",15,10000);
+		temp = new Item(Item.RING,"금반지",100,10000);
 		itemList.add(temp);
-		temp = new Item(Item.RING,"다이아반지",34,21000);
+		temp = new Item(Item.RING,"다이아반지",200,21000);
 		itemList.add(temp);
 		
 		
@@ -75,7 +75,8 @@ public class Shop {//shop은 player 마다 나눌 필요가 없음으로 싱글�
 						cnt+=1;
 						if(cnt ==selNum) {
 							Item putInvenItem = new Item(Guild.instace.getLogId(),itemList.get(i).getKind(),itemList.get(i).getName(),itemList.get(i).getPower(),itemList.get(i).getPrice());
-							PlayerManager.instance.playerList.get(PlayerManager.instance.playerLog()).setInventory(putInvenItem); // user id 넣어주기 
+							Inventory.instance.addInvenItem(putInvenItem); // user id 넣어주기 
+							
 						    int money = PlayerManager.instance.playerList.get(PlayerManager.instance.playerLog()).getMoney() - itemList.get(i).getPrice();
 						    PlayerManager.instance.playerList.get(PlayerManager.instance.playerLog()).setMoney(money);
 							System.out.println("[" + itemList.get(i).getName() + "] 을 구입했습니다.");

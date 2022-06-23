@@ -6,6 +6,7 @@ public class PlayerManager {
 	public static PlayerManager instance = new PlayerManager();
 	private int playerLog = -1;
 
+	private String PlayerLogId;
 	public int getUserLog() {
 		return this.playerLog;
 	}
@@ -51,6 +52,7 @@ public class PlayerManager {
 			if(playerList.get(i).getId().equals(id)&&playerList.get(i).getPw().equals(pw)) {
 				playerLog = i;
 				Guild.instace.checkLogId(id);
+				PlayerLogId =id;
 				break;
 			}
 		}
@@ -64,9 +66,6 @@ public class PlayerManager {
 			return true;
 		}
 		
-	}
-	public int playerLog() {
-		return playerLog;
 	}
 
 	public void deleteUser() {
@@ -100,5 +99,11 @@ public class PlayerManager {
 			System.out.print((i+1)+")  ID : "+playerList.get(i).getId()+"\n");
 		}
 	}
-	
+	public int playerLog() {
+		return playerLog;
+	}
+	public String playerLogId() {
+		return this.PlayerLogId;
+	}
+
 }

@@ -8,7 +8,7 @@ public class StageTitle extends Stage {
 		System.out.println("[시작] 을 입력하세요");
 		String start = Game.instance.scan.next();
 		if (start.equals("시작")) {
-			GameManager.nextStage = "LOBBY";
+			HuntManager.nextStage = "LOBBY";
 			return false;
 		}
 		return true;

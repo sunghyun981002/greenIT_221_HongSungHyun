@@ -9,7 +9,7 @@ public class Player {
 	
     private String id,pw;
     
-    private ArrayList<Item> inventory = new ArrayList<>(); 
+//    private ArrayList<Item> inventory = new ArrayList<>(); 
  
 	
 	Player(String id , String pw){
@@ -19,13 +19,13 @@ public class Player {
 
 	}
 
-	public ArrayList<Item> getInventory() {
-		return inventory;
-	}
-
-	public void setInventory(Item item) {
-		this.inventory.add(item);
-	}
+//	public ArrayList<Item> getInventory() {
+//		return inventory;
+//	}
+//
+//	public void setInventory(Item item) {
+//		this.inventory.add(item);
+//	}
 
 	public String getId() {
 		return id;

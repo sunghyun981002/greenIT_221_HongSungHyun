@@ -33,18 +33,25 @@ public class Guild {
 	public int getGuildUserNum() {
 		return this.guildUserNum;
 	}
+//	this.userId = userId;
+//	name = n;
+//	level = l;
+//	maxHp = h;
+//	att = a;
+//	def = d;
+//	exp = e;
 	public void setGuild(String id) {
-		Unit temp = new Unit(id,"성현",100,100,100,100,99);
+		Unit temp = new Unit(id,"성현",100,1000,83,100,99);
 		guildList.add(temp);
-		temp = new Unit(id,"하늘",10,10,10,10,10);
+		temp = new Unit(id,"하늘",10,600,52,50,65);
 		guildList.add(temp);
-		temp = new Unit(id,"수지",3,50,10,30,1);
+		temp = new Unit(id,"수지",3,500,31,30,75);
 		guildList.add(temp);
-		temp = new Unit(id,"태연",5,80,20,10,1);
+		temp = new Unit(id,"태연",5,500,46,50,82);
 		guildList.add(temp);
-		temp = new Unit(id,"혜리",7,90,20,3,1);
+		temp = new Unit(id,"혜리",7,390,29,50,10);
 		guildList.add(temp);
-		temp = new Unit(id,"이현",17,80,30,30,2);
+		temp = new Unit(id,"이현",17,780,58,80,22);
 		guildList.add(temp);
 		
 		// party =True 부여 
@@ -258,7 +265,7 @@ public class Guild {
     public void printCheckItem(int num) {
     	guildList.get(num).printCheckItem();
     }
-    
+
     
 
 

@@ -3,12 +3,12 @@ package game;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GameManager {
+public class HuntManager {
 	static String nextStage = "";
 	String curStage = "";
 	Map<String, Stage> stageList = new HashMap<String, Stage>();
 
-	GameManager() {
+	HuntManager() {
 
 		stageList.put("TITLE", new StageTitle());
 		stageList.put("BATTLE", new StageBattle());

@@ -3,14 +3,20 @@ package game;
 import java.util.ArrayList;
 
 public class StageBattle extends Stage{
-
+	BattleManager bm = new BattleManager();
 	ArrayList<Unit> Pl=Guild.instace.partyList;
-	
+	ArrayList<Monster> monList;
 	Guild guild=Guild.instace;
 	private int monDead = 0;
 	private int playerDead =0;
 	
 	
+	@Override
+	public void init() {
+		bm.monsterList.clear();
+		bm.monsterRandomSet(4);
+		
+	}
 	
 	
 	void print_character() {
@@ -31,10 +37,5 @@ public class StageBattle extends Stage{
 		return false;
 	}
 
-	@Override
-	public void init() {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

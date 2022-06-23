@@ -8,11 +8,11 @@ public class StageLobby extends Stage{
 		System.out.println("[1.전투] [2.종료]");
 		int sel = Game.instance.scan.nextInt();
 		if (sel == 1) {
-			GameManager.nextStage = "BATTLE";
+			HuntManager.nextStage = "BATTLE";
 		} else if (sel == 2) {
-			GameManager.nextStage = "";
+			HuntManager.nextStage = "";
 		} else {
-			GameManager.nextStage = "";
+			HuntManager.nextStage = "";
 		}
 		return false;
 	}
