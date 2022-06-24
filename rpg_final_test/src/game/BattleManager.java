@@ -8,7 +8,8 @@ public class BattleManager {
 	String Path ="game.";
 	String mons[] = { "MonsterBat", "MonsterZombie" ,"MonsterWolf"};
 	private int cnt=-1;
-	
+	//사냥까지 완성(아이템 빼기 기능 , 유저별 파티 리스트 부분 수정해야함)
+
 
 	public void monsterRandomSet(int size) {
 		cnt++;

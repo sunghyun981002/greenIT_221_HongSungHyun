@@ -10,7 +10,7 @@ public class StageBattle extends Stage{
 	private int monDead = 0;
 	private int playerDead =0;
 	
-	
+    
 	@Override
 	public void init() {
 		bm.monsterList.clear();
@@ -19,7 +19,7 @@ public class StageBattle extends Stage{
 		monList = bm.monsterList;
 		monDead = monList.size();
 		playerDead = Pl.size();
-		
+//		guild.getLogId();
 	}
 	
 	

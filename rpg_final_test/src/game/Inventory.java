@@ -19,7 +19,7 @@ public class Inventory { // player마다 가지고 있다. (상점에서 산 아
 		while(true) {
 			printInvenList(PlayerLog);
 			System.out.println("============ [인벤메뉴] =============");
-			System.out.println("[1.착용] [0.뒤로가기]");
+			System.out.println("[1.착용] [2.해제] [0.뒤로가기]");
 			int sel = Guild.instace.scan.nextInt();
 			if(sel ==1) putOnItem(PlayerLog);
 			else if(sel ==0)break;
