@@ -9,7 +9,8 @@ public class StageBattle extends Stage{
 	Guild guild=Guild.instace;
 	private int monDead = 0;
 	private int playerDead =0;
-	
+	ArrayList<Unit> party = new ArrayList<>();
+	private int[] stepBack = new int[4]; 
     
 	@Override
 	public void init() {
@@ -18,8 +19,26 @@ public class StageBattle extends Stage{
 		monList =null;
 		monList = bm.monsterList;
 		monDead = monList.size();
-		playerDead = Pl.size();
+		playerDead = party.size();
 //		guild.getLogId();
+	}
+	public void setPartyList(String logId) {
+		int n=0;
+		for(int i=0; i<Pl.size(); i++) {
+			
+			if(Pl.get(i).getUserId().equals(logId)) {
+				party.add(Pl.get(i));
+				stepBack[n] = i;
+				n++;
+			}
+		}
+	}
+	public void stepBackPartyList() {
+		for(int i=0; i<4; i++) {
+			Pl.set(stepBack[i], party.get(i));
+		}
+		party.clear();
+		
 	}
 	
 	
@@ -28,7 +47,6 @@ public class StageBattle extends Stage{
 		 System.out.println("어두컴컴하고 기분 나쁜 던전");
 		System.out.println("======[PLAYER]======");
 		guild.printParty();
-		System.out.println(Pl.size());
 		System.out.println("======[MONSTER]======");
 		for (int i = 0; i < monList.size(); i++) {
 			monList.get(i).printData();
@@ -36,7 +54,7 @@ public class StageBattle extends Stage{
 		System.out.println("=====================");
 	}
 	public void player_attack(int idx) {
-		Unit u =Pl.get(idx);
+		Unit u =party.get(idx);
 		if(u.getHp()<=0)return;
 		System.out.println("=====[메뉴 선택]=====");
 		System.out.println("["+u.getName()+"] [1.공격] [2.포션마시기]");
@@ -60,9 +78,9 @@ public class StageBattle extends Stage{
 		Monster m = monList.get(idx);
 		if(m.curhp <=0)return;
 		while(true) {
-			int index = guild.ran.nextInt(Pl.size());
-			if(Pl.get(index).getHp()>0) {
-				m.attack(Pl.get(index));
+			int index = guild.ran.nextInt(party.size());
+			if(party.get(index).getHp()>0) {
+				m.attack(party.get(index));
 				try {
 					Thread.sleep(1000);
 				} catch (Exception e) {
@@ -74,12 +92,12 @@ public class StageBattle extends Stage{
 	}
 	public void check_live() {
 		int num =0;
-		for(int i =0; i<Pl.size(); i++) {
-			if(Pl.get(i).getHp()<=0) {
+		for(int i =0; i<party.size(); i++) {
+			if(party.get(i).getHp()<=0) {
 				num++;
 			}
 		}
-		playerDead = Pl.size() - num;
+		playerDead = party.size() - num;
 		num = 0;
 		for (int i = 0; i < monList.size(); i++) {
 			if (monList.get(i).curhp <= 0) {
@@ -89,25 +107,25 @@ public class StageBattle extends Stage{
 		monDead = monList.size() - num;
 	}
 	public void PlusExp() {
-		for(int i=0; i<Pl.size(); i++) {
-			Pl.get(i).setExp(100/Pl.get(i).getLevel());
-			if(Pl.get(i).getExp()>=100) {
-				System.out.print(Pl.get(i).getName() +" 레벨업!!(");
-				Pl.get(i).setLevel(1);
-				Pl.get(i).setExp(-100);
+		for(int i=0; i<party.size(); i++) {
+			party.get(i).setExp(100/party.get(i).getLevel());
+			if(party.get(i).getExp()>=100) {
+				System.out.print(party.get(i).getName() +" 레벨업!!(");
+				party.get(i).setLevel(1);
+				party.get(i).setExp(-100);
 				int ranNum = guild.ran.nextInt(3);
 				if(ranNum ==0) {
-					System.out.println("att이"+50/Pl.get(i).getLevel()+" 올랐습니다.");
-					Pl.get(i).setAtt(50/Pl.get(i).getLevel());
+					System.out.println("att이"+50/party.get(i).getLevel()+" 올랐습니다.");
+					party.get(i).setAtt(50/party.get(i).getLevel());
 				}
 				else if(ranNum ==1) {
-					System.out.println("def가"+50/Pl.get(i).getLevel()+" 올랐습니다.");
-					Pl.get(i).setDef(50/Pl.get(i).getLevel());
+					System.out.println("def가"+50/party.get(i).getLevel()+" 올랐습니다.");
+					party.get(i).setDef(50/party.get(i).getLevel());
 				}
 				else if(ranNum ==2) {
-					System.out.println("Hp가"+80/Pl.get(i).getLevel()+" 올랐습니다.");
-					Pl.get(i).setPlusHp(80/Pl.get(i).getLevel());
-					Pl.get(i).setMaxHp(80/Pl.get(i).getLevel());
+					System.out.println("Hp가"+80/party.get(i).getLevel()+" 올랐습니다.");
+					party.get(i).setPlusHp(80/party.get(i).getLevel());
+					party.get(i).setMaxHp(80/party.get(i).getLevel());
 				}
 			}
 		}
@@ -119,11 +137,11 @@ public class StageBattle extends Stage{
 		int p_idx =0;
 		int m_idx =0;
 		boolean turn =true;
-		
+		setPartyList(guild.getLogId());
 		while(run) {
 			if(turn) {
 				print_character();
-				if(p_idx<Pl.size()) {
+				if(p_idx<party.size()) {
 					player_attack(p_idx);
 					
 					p_idx +=1;
@@ -148,6 +166,7 @@ public class StageBattle extends Stage{
 				break;
 		}
 		PlusExp();
+		stepBackPartyList();
 		HuntManager.nextStage ="LOBBY";
 		return false;
 	}

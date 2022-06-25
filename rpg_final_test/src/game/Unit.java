@@ -91,7 +91,10 @@ public class Unit {
 	public void setAtt(int att) {
 		this.att += att;
 	}
-
+	public void setminuseAtt(int att) {
+		this.att -= att;
+	}
+	
 	public int getDef() {
 		return def;
 	}
@@ -159,13 +162,40 @@ public class Unit {
 			System.out.print("[공격력 : " + att + "]");
 		}
 		if (armor != null) {
-			System.out.print(" [방어력 : " + def + " + " + armor.getPower() + "]");
+			System.out.print(" [방어력 : " + def + " (" + armor.getPower() + " 증가)]");
 		} else {
 			System.out.print(" [방어력 : " + def + "]");
 		}
 		System.out.println(" [파티중 : " + party + "]");
 
 	}
+	public void printBeforeItem() { // 착용 후 보여주기
+		System.out.println("[이름 : " + name + "]");
+		System.out.println("[레벨 : " + level + "]");
+		if (ring != null) {
+			System.out.print("[체력 : " + hp + " (" + ring.getPower()+"감소)");
+		} else {
+			System.out.print("[체력 : " + hp);
+		}
+		if (ring != null) {
+			System.out.println(" / " + maxHp + " (" + ring.getPower() + " 감소)]");
+		} else {
+			System.out.println(" / " + maxHp + "]");
+		}
+		if (weapon != null) {
+			System.out.print("[공격력 : " + att + " (" + weapon.getPower() + " 감소)]");
+		} else {
+			System.out.print("[공격력 : " + att + "]");
+		}
+		if (armor != null) {
+			System.out.print(" [방어력 : " + def + " (" + armor.getPower() + " 감소)]");
+		} else {
+			System.out.print(" [방어력 : " + def + "]");
+		}
+		System.out.println(" [파티중 : " + party + "]");
+
+	}
+
 
 	public void printCheckItem() {
 		if (weapon == null) {

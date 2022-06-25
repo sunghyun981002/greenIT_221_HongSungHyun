@@ -16,7 +16,7 @@ public class Guild {
 	private int partyAllNum=-1;
 	private int guildUserNum=0;
 	private int partyUserNum=4;
-
+	private int cnt =0;
 	private Guild() {
 		
 	}
@@ -33,13 +33,7 @@ public class Guild {
 	public int getGuildUserNum() {
 		return this.guildUserNum;
 	}
-//	this.userId = userId;
-//	name = n;
-//	level = l;
-//	maxHp = h;
-//	att = a;
-//	def = d;
-//	exp = e;
+
 	public void setGuild(String id) {
 		Unit temp = new Unit(id,"성현",100,1000,83,100,99);
 		guildList.add(temp);
@@ -63,13 +57,14 @@ public class Guild {
 			
 		
 		setPartyList();
+		cnt++;
 	}
 	public void partyTrue() {
 		
 	}
 	public void setPartyList() {
 		// partyList에 넣어주기 
-		for(int i=0; i<guildList.size();i++) {
+		for(int i=cnt*6; i<guildList.size();i++) {
 			if(guildList.get(i).isParty()==true){// 파티가 트루일때 영입
 				partyList.add(guildList.get(i));
 			}	
@@ -89,6 +84,7 @@ public class Guild {
 		int n=0;
 		guildUserNum=-1;
 		guildAllNum=-1;
+		
 		for(int i=0; i<guildList.size(); i++) {
 			if(guildList.get(i).getUserId().equals(checkLogId)) {
 				guildUserNum++;
@@ -177,6 +173,7 @@ public class Guild {
     public void printParty() {
     	System.out.println("============= [파티원] =================");
     	int n=0; 
+    	
     	for(int i=0; i<partyList.size(); i++) {
     		partyAllNum =-1;
     		if(partyList.get(i).getUserId().equals(checkLogId)) {
@@ -264,6 +261,9 @@ public class Guild {
     }
     public void printCheckItem(int num) {
     	guildList.get(num).printCheckItem();
+    }
+    public void printTakeOffItemUnitStatus(int num) {
+    	guildList.get(num).printBeforeItem();
     }
 
     

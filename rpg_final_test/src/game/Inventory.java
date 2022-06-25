@@ -22,6 +22,7 @@ public class Inventory { // player마다 가지고 있다. (상점에서 산 아
 			System.out.println("[1.착용] [2.해제] [0.뒤로가기]");
 			int sel = Guild.instace.scan.nextInt();
 			if(sel ==1) putOnItem(PlayerLog);
+			else if(sel ==2)takeOffItem(PlayerLog);
 			else if(sel ==0)break;
 		}
 	}
@@ -57,34 +58,90 @@ public class Inventory { // player마다 가지고 있다. (상점에서 산 아
 					if(cnt==selEq) {
 						if(inventory.get(i).getKind() == Item.WEAPON) {
 							if(pl.getGuildUnit(sel).getWeapon() !=null) {
-								inventory.add(pl.getGuildUnit(sel).getWeapon());
+								System.out.println("이미 아이템이 착용되어있습니다.");
+							}
+							else {
+								pl.getGuildUnit(sel).setWeapon(inventory.get(i));
+								pl.getGuildUnit(sel).setAtt(inventory.get(i).getPower());
+								System.out.println("착용완료!");
+								inventory.remove(i);
+								
 							}
 							
-							pl.getGuildUnit(sel).setWeapon(inventory.get(i));
-							pl.getGuildUnit(sel).setAtt(inventory.get(i).getPower());
 							
 						}
 						else if(inventory.get(i).getKind() == Item.ARMOR) {
 							if(pl.getGuildUnit(sel).getArmor() !=null) {
-								inventory.add(pl.getGuildUnit(sel).getArmor());
+								System.out.println("이미 아이템이 착용되어있습니다.");
 							}
-							
-							pl.getGuildUnit(sel).setArmor(inventory.get(i));
-							pl.getGuildUnit(sel).setDef(inventory.get(i).getPower());
+							else {
+								pl.getGuildUnit(sel).setArmor(inventory.get(i));
+								System.out.println("착용완료!");		
+								inventory.remove(i);
+							}
 							
 						}
 						else if(inventory.get(i).getKind() == Item.RING) {
 							if(pl.getGuildUnit(sel).getRing() !=null) {
+								System.out.println("이미 아이템이 착용되어있습니다.");
 								inventory.add(pl.getGuildUnit(sel).getRing());
 							}
-							
-							pl.getGuildUnit(sel).setRing(inventory.get(i));
-							pl.getGuildUnit(sel).setPlusHp(inventory.get(i).getPower());
-							pl.getGuildUnit(sel).setMaxHp(inventory.get(i).getPower());
+							else {
+								pl.getGuildUnit(sel).setRing(inventory.get(i));
+								pl.getGuildUnit(sel).setPlusHp(inventory.get(i).getPower());
+								pl.getGuildUnit(sel).setMaxHp(inventory.get(i).getPower());
+								System.out.println("착용완료!");	
+								inventory.remove(i);
+							}
 							
 						}
-						inventory.remove(i);
+						
 					}
+				}
+			}
+		}
+	}
+	public void takeOffItem(String PlayerLog) {
+		Guild.instace.printAllguildList();
+		System.out.print("아이템을 해체할 길드원 선택 : ");
+		int sel =Guild.instace.scan.nextInt()+((Guild.instace.getGuildAllNum()-1)-Guild.instace.getGuildUserNum());
+		while(true) {
+			Guild.instace.printTakeOffItemUnitStatus(sel);
+			Guild.instace.printCheckItem(sel);
+			System.out.print("해제할 아이템 종류를 입력하세요 [1.웨폰 2.아머 3.링 0.종료]");
+			int takeOffsel = Guild.instace.scan.nextInt();
+			if(takeOffsel == 0)return;
+			Player pl=PlayerManager.instance.playerList.get(PlayerManager.instance.playerLog()); // 현재로그인중인 플레이어 
+
+			if(takeOffsel ==Item.WEAPON ) {
+				if(pl.getGuildUnit(sel).getWeapon() !=null) {
+					inventory.add(pl.getGuildUnit(sel).getWeapon());
+					pl.getGuildUnit(sel).setminuseAtt(pl.getGuildUnit(sel).getWeapon().getPower());
+					pl.getGuildUnit(sel).setWeapon(null);
+				}
+				else {
+					System.out.println("착용된 아이템이 없습니다.");
+				}
+			}
+			else if(takeOffsel == Item.ARMOR) {
+				if(pl.getGuildUnit(sel).getArmor() !=null) {
+					inventory.add(pl.getGuildUnit(sel).getArmor());
+					pl.getGuildUnit(sel).setminuseAtt(pl.getGuildUnit(sel).getArmor().getPower());
+					pl.getGuildUnit(sel).setArmor(null);
+				}
+				else {
+					System.out.println("착용된 아이템이 없습니다.");
+				}
+				
+			}
+			else if(takeOffsel == Item.RING) {
+				if(pl.getGuildUnit(sel).getRing() !=null) {
+					inventory.add(pl.getGuildUnit(sel).getRing());
+					pl.getGuildUnit(sel).setminuseAtt(pl.getGuildUnit(sel).getRing().getPower());
+					pl.getGuildUnit(sel).setRing(null);
+				}
+				else {
+					System.out.println("착용된 아이템이 없습니다.");
 				}
 			}
 		}
