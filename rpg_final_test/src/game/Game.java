@@ -30,7 +30,7 @@ public class Game {
 			}
 			else if (sel==3) PlayerManager.instance.deleteUser();
 			else if (sel==4) PlayerManager.instance.printUserList();
-			else if (sel==5) {}
+			else if (sel==5) FileManager.instance.saveUserData();
 			else if (sel==6) {}
 			else if (sel==0) {
 				System.out.println("게임을 종료합니다.");
