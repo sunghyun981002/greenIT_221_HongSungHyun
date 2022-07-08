@@ -1,0 +1,49 @@
+@charset "UTF-8";
+        @font-face {
+    font-family: 'SUIT-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Medium.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+        body{
+            font-family: 'SUIT-Medium';
+            background-color: rgb(243, 243, 243);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input{
+            width : 500px; 
+            height : 50px; 
+            font-size : 16px ;
+            border :solid 1px #dadada;
+            
+        }
+        select{
+            width : 500px; 
+            height : 50px; 
+            font-size : 16px ; 
+            border :solid 1px #dadada;
+        }
+        input#year,input#day,select#month{
+            width : 160px; 
+            height : 50px; 
+            font-size : 16px ;
+            border :solid 1px #dadada;
+        }
+        input#mobile{
+            width : 380px; 
+            height : 50px; 
+            font-size : 16px ;
+            border :solid 1px #dadada;
+        }
+        button#butt{
+            width : 110px; 
+            height : 50px; 
+            font-size : 14px ;
+        }
+        input#id::placeholder {
+        text-align: right;
+        margin-right: 10px;
+        font-size: 16px;
+        }
