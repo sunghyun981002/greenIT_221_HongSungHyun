@@ -31,7 +31,7 @@
     <br><br><br>
     <img src="naver_logo.png" href="http://www.naver.com" width="240px" height="44px">
     <br><br><br>
-    <form method='get' action="_03.joinPro.jsp">
+    <form method='get' action="./join">
         아이디<br>
         <input type="text" class="req" required id="id" name="id" autofocus pattern="[a-z]{1}[a-z0-9]{1,7}" maxlength="20" placeholder="@naver.com">
         <br><br>

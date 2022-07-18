@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import webEx.UserDAO;
 import webEx.UserDTO;
@@ -49,7 +50,8 @@ public class LoginAction extends HttpServlet {
 		if(dao.selectUsers(id,pw) == 1){
 			url = "_04.main.jsp";
 //			url ="./board";
-//			session.setAttribute("log", id);
+			HttpSession session =request.getSession();
+			session.setAttribute("log", id);
 		}
 		else{
 			url="_00.index.jsp";
